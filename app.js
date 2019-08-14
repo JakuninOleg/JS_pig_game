@@ -9,9 +9,10 @@ GAME RULES:
 
 */
 
-var scores, roundSocre, activePlayer, diceDOM, gamePlaying;
+var scores, roundSocre, activePlayer, diceDOM, gamePlaying, dice, diceValue;
 
 diceDOM = document.querySelector('.dice');
+diceValue = 0;
 
 function initGame() {
   scores = [0, 0];
@@ -36,14 +37,17 @@ initGame();
 
 document.querySelector('.btn-roll').addEventListener('click', function () {
   if (gamePlaying) {
-    var dice = Math.floor(Math.random() * 6) + 1;
-
+    dice = Math.floor(Math.random() * 6) + 1;
     diceDOM.src = 'dice-' + dice + '.png';
     diceDOM.style.display = 'block';
 
-    if (dice !== 1) {
-      roundScore += dice;
-      document.getElementById('current-' + activePlayer).textContent = roundScore;
+    if (dice !== 1 && dice !== 6) {
+      diceValue = 0;
+      calculateCurrentScore();
+    } else if (dice === 6) {
+      diceValue += dice;
+      diceValue === 12 ? doubleSix() : roundScore += dice;
+      calculateCurrentScore();
     } else {
       nextPlayer();
     };
@@ -81,3 +85,14 @@ function nextPlayer() {
 };
 
 document.querySelector('.btn-new').addEventListener('click', initGame);
+
+function doubleSix() {
+  document.getElementById('score-' + activePlayer).textContent = 0;
+  diceValue = 0;
+  nextPlayer();
+}
+
+function calculateCurrentScore() {
+  roundScore += dice;
+  document.getElementById('current-' + activePlayer).textContent = roundScore;
+ }
