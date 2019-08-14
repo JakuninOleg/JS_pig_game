@@ -75,6 +75,7 @@ function nextPlayer() {
 document.querySelector('.btn-new').addEventListener('click', initGame);
 
 function doubleSix() {
+  scores[activePlayer] = 0;
   document.getElementById('score-' + activePlayer).textContent = 0;
   diceValue = 0;
   nextPlayer();
@@ -82,6 +83,5 @@ function doubleSix() {
 
 function calculateCurrentScore() {
   roundScore += dice;
-  scores[activePlayer] = 0;
   document.getElementById('current-' + activePlayer).textContent = roundScore;
 };
