@@ -37,7 +37,8 @@ initGame();
 
 document.querySelector('.btn-roll').addEventListener('click', function () {
   if (gamePlaying) {
-    dice = Math.floor(Math.random() * 6) + 1;
+    // dice = Math.floor(Math.random() * 6) + 1;
+    dice = 6;
     diceDOM.src = 'dice-' + dice + '.png';
     diceDOM.style.display = 'block';
 
@@ -46,8 +47,7 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
       calculateCurrentScore();
     } else if (dice === 6) {
       diceValue += dice;
-      diceValue === 12 ? doubleSix() : roundScore += dice;
-      calculateCurrentScore();
+      diceValue === 12 ? doubleSix() : calculateCurrentScore();
     } else {
       nextPlayer();
     };
@@ -90,9 +90,9 @@ function doubleSix() {
   document.getElementById('score-' + activePlayer).textContent = 0;
   diceValue = 0;
   nextPlayer();
-}
+};
 
 function calculateCurrentScore() {
   roundScore += dice;
   document.getElementById('current-' + activePlayer).textContent = roundScore;
- }
+};
