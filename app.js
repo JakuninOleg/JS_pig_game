@@ -82,5 +82,6 @@ function doubleSix() {
 
 function calculateCurrentScore() {
   roundScore += dice;
+  scores[activePlayer] = 0;
   document.getElementById('current-' + activePlayer).textContent = roundScore;
 };
