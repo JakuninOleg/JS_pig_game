@@ -63,6 +63,7 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
 function nextPlayer() {
   activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
   roundScore = 0;
+  diceValue = 0;
   document.getElementById('current-0').textContent = 0;
   document.getElementById('current-1').textContent = 0;
 
@@ -77,7 +78,6 @@ document.querySelector('.btn-new').addEventListener('click', initGame);
 function doubleSix() {
   scores[activePlayer] = 0;
   document.getElementById('score-' + activePlayer).textContent = 0;
-  diceValue = 0;
   nextPlayer();
 };
 
